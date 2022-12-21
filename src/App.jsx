@@ -1,16 +1,18 @@
 import './App.css';
-import { Provider } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Container } from './components/container/Container';
 import { Header } from './components/header/Header';
-import { store } from './store';
+import { updateToken } from './store/tokenReducer';
+import { getToken } from './API/token';
 
 function App() {
+  const dispatch = useDispatch();
+
+  dispatch(updateToken(getToken()));
   return (
-    <Provider store={store}>
-      <Container>
-        <Header />
-      </Container>
-    </Provider>
+    <Container>
+      <Header />
+    </Container>
   );
 }
 
