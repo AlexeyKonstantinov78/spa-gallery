@@ -16,8 +16,6 @@ export const Auth = () => {
   const linkImage = useSelector((state) => state.authProfile.data.image);
   const loading = useSelector((state) => state.authProfile.loading);
 
-  console.log(token);
-
   useEffect(() => {
     dispatch(authProfileAsync());
   }, [token]);
@@ -27,10 +25,6 @@ export const Auth = () => {
     dispatch(deleteToken(''));
     dispatch(authLogout());
   };
-
-  console.log(name);
-  console.log(linkImage);
-  console.log(loading);
 
   return (
     <div className={style.auth}>
