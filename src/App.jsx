@@ -5,6 +5,7 @@ import { Container } from './components/container/Container';
 import { Header } from './components/header/Header';
 import { updateToken } from './store/tokenReducer';
 import { getToken } from './API/token';
+import { Main } from './components/main/main';
 
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function App() {
   return (
     <Container>
       <Header />
+      <Main />
     </Container>
   );
 }

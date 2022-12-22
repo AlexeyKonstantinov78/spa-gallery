@@ -26,7 +26,6 @@ export const getToken = () => {
     urlToken.searchParams.append('code', code);
 
     axios.post(urlToken).then((response) => {
-      console.log(response);
       setToken(response.data.access_token);
       dispatch(updateToken(response.data.access_token));
     });
