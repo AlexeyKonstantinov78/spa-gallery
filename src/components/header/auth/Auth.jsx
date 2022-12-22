@@ -1,34 +1,65 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCommentAndToken } from '../../../store/tokenReducer';
-import url from '../../util/const';
+import { deleteToken } from '../../../store/tokenReducer';
+import axios from 'axios';
+import { url, API_URL } from '../../util/const';
 import style from './Auth.module.css';
+import { useEffect } from 'react';
+import {
+  authProfileRequest,
+  authProfileRequestSuccess,
+  authProfileRequestError,
+} from '../../../store/authProfile/action';
 
 export const Auth = () => {
-  const comment = useSelector((state) => state.token.comment);
-  const token = useSelector((state) => state.token.token);
   const dispatch = useDispatch();
-
-  console.log(comment);
+  const token = useSelector((state) => state.token.token);
   console.log(token);
+  useEffect(() => {
+    if (!token) return;
+    dispatch(authProfileRequest());
+    axios
+      .get(`${API_URL}/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(({
+        data: {
+          name,
+          profile_image: {
+            small: image,
+          }
+        }
+      }) => {
+        const data = { name, image };
+        dispatch(authProfileRequestSuccess(data));
+        console.log(name);
+        console.log(image);
+      })
+      .catch((err) => {
+        dispatch(authProfileRequestError(err.message));
+        console.log(err.message);
+      });
+  }, [token]);
 
-  const handleChange = () => {
-    dispatch(updateCommentAndToken('Hello Redux and Token'));
+  const hendlerDeleteToken = (event) => {
+    event.preventDefault();
+    dispatch(deleteToken(''));
   };
-
-  if (new URLSearchParams(location.search).get('code')) {
-    handleChange();
-  }
 
   return (
     <div className={style.auth}>
       {!token && (
-        <a className={style.login} href={url} >
+        <a className={style.login} href={url}>
           Вход
         </a>
       )}
       {token && (
         <dir className={style.login}>
-          <a href='#'>Выход</a>
+          <a href='#' onClick={hendlerDeleteToken}>
+            Выход
+          </a>
         </dir>
       )}
     </div>

@@ -6,7 +6,7 @@ export const Header = () => {
 
   return (
     <header className={style.header}>
-      <div className={style.logo}>
+      <a className={style.logo} href='http://192.168.1.136:3000'>
         <svg
           width='32'
           height='32'
@@ -18,7 +18,7 @@ export const Header = () => {
           <title id='unsplash-home'>Unsplash Home</title>
           <path d='M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z'></path>
         </svg>
-      </div>
+      </a>
       <Auth />
     </header>
   );

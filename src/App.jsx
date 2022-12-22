@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './App.css';
 import { useDispatch } from 'react-redux';
 import { Container } from './components/container/Container';

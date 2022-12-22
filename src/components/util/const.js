@@ -1,5 +1,6 @@
 export const API_URL = 'https://api.unsplash.com';
 export const API_URL_AUTH = 'https://unsplash.com/oauth/authorize';
+export const API_URL_AUTH_TOKEN = 'https://unsplash.com/oauth/token';
 
 // без авторизации
 // список фотографий
@@ -13,15 +14,21 @@ export const API_URL_AUTH = 'https://unsplash.com/oauth/authorize';
 
 
 export const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+export const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
 export const REDIRECT_URI = 'http://192.168.1.136:3000';
 export const RESPONSE_TYPE = 'code';
 export const SCOPE = 'public read_user read_photos write_likes';
 
-const url = new URL(API_URL_AUTH);
+export const url = new URL(API_URL_AUTH);
 
 url.searchParams.append('client_id', ACCESS_KEY);
 url.searchParams.append('redirect_uri', REDIRECT_URI);
 url.searchParams.append('response_type', RESPONSE_TYPE);
 url.searchParams.append('scope', SCOPE);
 
-export default url;
+export const urlToken = new URL(API_URL_AUTH_TOKEN);
+
+urlToken.searchParams.append('client_id', ACCESS_KEY);
+urlToken.searchParams.append('client_secret', SECRET_KEY);
+urlToken.searchParams.append('redirect_uri', REDIRECT_URI);
+urlToken.searchParams.append('grant_type', 'authorization_code');

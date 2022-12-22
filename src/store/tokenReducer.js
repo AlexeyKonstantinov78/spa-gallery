@@ -2,19 +2,11 @@ import { setToken } from '../API/token';
 
 // стартовый state
 const initialState = {
-  comment: 'hello redux',
   token: '',
 };
 
-const UPDATE_COMMENT = 'UPDATE_COMMENT';
 const UPDATE_TOKEN = 'UPDATE_TOKEN';
 const DELETE_TOKEN = 'DELETE_TOKEN';
-
-
-export const updateCommentAndToken = (comment) => ({
-  type: UPDATE_COMMENT,
-  comment,
-});
 
 export const updateToken = (token) => ({
   type: UPDATE_TOKEN,
@@ -40,11 +32,6 @@ export const tokenMiddleware = store => next => (action) => {
 // корневой редусер
 export const tokenReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_COMMENT:
-      return {
-        ...state,
-        comment: action.comment,
-      };
     case UPDATE_TOKEN:
       return {
         ...state,
