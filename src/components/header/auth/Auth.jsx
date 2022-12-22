@@ -7,12 +7,15 @@ import { useEffect } from 'react';
 import {
   authLogout, authProfileAsync,
 } from '../../../store/authProfile/action';
+import PuffLoader from 'react-spinners/PuffLoader';
 
 export const Auth = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
   const name = useSelector((state) => state.authProfile.data.name);
   const linkImage = useSelector((state) => state.authProfile.data.image);
+  const loading = useSelector((state) => state.authProfile.loading);
+
   console.log(token);
 
   useEffect(() => {
@@ -27,6 +30,7 @@ export const Auth = () => {
 
   console.log(name);
   console.log(linkImage);
+  console.log(loading);
 
   return (
     <div className={style.auth}>
@@ -40,6 +44,9 @@ export const Auth = () => {
       {token && (
         <dir className={style.login}>
           <div className={style.profilelogin}>
+            {loading &&
+              <PuffLoader color="#36d7b7" />
+            }
             <img src={linkImage} alt={name} />
             <p>{name}</p>
           </div>
