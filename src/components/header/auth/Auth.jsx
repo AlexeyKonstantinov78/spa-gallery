@@ -1,62 +1,48 @@
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteToken } from '../../../store/tokenReducer';
-import axios from 'axios';
-import { url, API_URL } from '../../util/const';
+import { url } from '../../util/const';
 import style from './Auth.module.css';
 import { useEffect } from 'react';
 import {
-  authProfileRequest,
-  authProfileRequestSuccess,
-  authProfileRequestError,
+  authLogout, authProfileAsync,
 } from '../../../store/authProfile/action';
 
 export const Auth = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
+  const name = useSelector((state) => state.authProfile.data.name);
+  const linkImage = useSelector((state) => state.authProfile.data.image);
   console.log(token);
+
   useEffect(() => {
-    if (!token) return;
-    dispatch(authProfileRequest());
-    axios
-      .get(`${API_URL}/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(({
-        data: {
-          name,
-          profile_image: {
-            small: image,
-          }
-        }
-      }) => {
-        const data = { name, image };
-        dispatch(authProfileRequestSuccess(data));
-        console.log(name);
-        console.log(image);
-      })
-      .catch((err) => {
-        dispatch(authProfileRequestError(err.message));
-        console.log(err.message);
-      });
+    dispatch(authProfileAsync());
   }, [token]);
 
   const hendlerDeleteToken = (event) => {
     event.preventDefault();
     dispatch(deleteToken(''));
+    dispatch(authLogout());
   };
+
+  console.log(name);
+  console.log(linkImage);
 
   return (
     <div className={style.auth}>
       {!token && (
-        <a className={style.login} href={url}>
-          Вход
-        </a>
+        <dir className={style.login}>
+          <a className={style.login} href={url}>
+            Вход
+          </a>
+        </dir>
       )}
       {token && (
         <dir className={style.login}>
+          <div className={style.profilelogin}>
+            <img src={linkImage} alt={name} />
+            <p>{name}</p>
+          </div>
           <a href='#' onClick={hendlerDeleteToken}>
             Выход
           </a>
