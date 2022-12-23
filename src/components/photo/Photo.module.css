@@ -1,0 +1,45 @@
+.photo__autor_date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.photo_autors {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.photo__img {
+  display: block;
+  height: 60vh;
+  width: auto;
+  margin: 0 auto;
+}
+
+.photo__like {
+  text-align: right;
+}
+
+.photo__like strong {
+  margin-right: 10px;
+  mix-blend-mode: difference;
+  font-size: 16px;
+}
+
+.photo__like_svg {
+  fill: rgb(162, 169, 175);
+  transform: translateY(10px);
+}
+
+.photo__like_svg[aria-checked="true"] {
+  fill: tomato;
+}
+
+.photo__btn {
+  background-color: transparent;
+  border-color: transparent;
+}

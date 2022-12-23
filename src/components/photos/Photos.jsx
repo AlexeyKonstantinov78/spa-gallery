@@ -3,16 +3,7 @@
 import _ from './Photos.module.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-const formDate = (date) => {
-  const formater = new Intl.DateTimeFormat('ru-RU', {
-    dateStyle: 'short',
-    timeStyle: 'short',
-  });
-  const fecha = new Date(date);
-  const formateddate = formater.format(fecha);
-  return formateddate;
-};
+import { formDate } from '../util/formDate';
 
 export const Photos = ({ photo }) => {
   console.log();
