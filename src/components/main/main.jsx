@@ -21,7 +21,7 @@ export const Main = () => {
   const photos = useSelector((state) => state.photos.photos);
 
   useEffect(() => {
-    dispatch(photosAsync(1));
+    dispatch(photosAsync());
   }, []);
 
   console.log(photos);

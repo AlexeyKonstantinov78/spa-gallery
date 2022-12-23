@@ -8,6 +8,7 @@ import {
   authLogout, authProfileAsync,
 } from '../../../store/authProfile/action';
 import PuffLoader from 'react-spinners/PuffLoader';
+import { photosAsync } from '../../../store/photos/action';
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -18,12 +19,14 @@ export const Auth = () => {
 
   useEffect(() => {
     dispatch(authProfileAsync());
+    dispatch(photosAsync());
   }, [token]);
 
   const hendlerDeleteToken = (event) => {
     event.preventDefault();
     dispatch(deleteToken(''));
     dispatch(authLogout());
+    dispatch(photosAsync());
   };
 
   return (

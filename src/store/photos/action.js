@@ -21,10 +21,16 @@ export const photosRequestError = (error) => ({
 
 export const photosAsync = (page = 1) => (dispatch, getState) => {
   dispatch(photosRequest());
+  const token = getState().token.token;
 
   axios
     .get(
-      `${API_URL}/photos?client_id=${ACCESS_KEY}&per_page=30&order_by=popular&page=${page}`
+      `${API_URL}/photos?client_id=${ACCESS_KEY}&per_page=30&order_by=popular&page=${page}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     )
     .then(({ data }) => {
       dispatch(photosRequestSuccess(data));
