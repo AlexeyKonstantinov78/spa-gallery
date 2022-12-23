@@ -7,6 +7,7 @@ import { updateToken } from './store/tokenReducer';
 import { getToken } from './API/token';
 import { Main } from './components/main/Main';
 import { Route, Routes } from 'react-router-dom';
+import { Photo } from './components/photo/Photo';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,12 @@ function App() {
           path='/'
           element={
             <Main />
+          }
+        />
+        <Route
+          path='/photos/:id'
+          element={
+            <Photo />
           }
         />
       </Routes>
