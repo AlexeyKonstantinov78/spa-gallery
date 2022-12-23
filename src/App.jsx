@@ -6,6 +6,7 @@ import { Header } from './components/header/Header';
 import { updateToken } from './store/tokenReducer';
 import { getToken } from './API/token';
 import { Main } from './components/main/Main';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +15,14 @@ function App() {
   return (
     <Container>
       <Header />
-      <Main />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <Main />
+          }
+        />
+      </Routes>
     </Container>
   );
 }

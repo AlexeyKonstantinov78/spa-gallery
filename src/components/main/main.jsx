@@ -35,6 +35,12 @@ export const Main = () => {
     });
 
     observer.observe(endList.current);
+
+    return () => {
+      if (endList.current) {
+        observer.unobserve(endList.current);
+      }
+    };
   }, [endList.current]);
 
   console.log(photos);

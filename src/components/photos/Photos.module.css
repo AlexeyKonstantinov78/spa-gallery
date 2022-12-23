@@ -30,6 +30,10 @@
   font-weight: 500;
 }
 
+.photos_autors_link {
+  z-index: 1;
+}
+
 .photos__like {
   position:absolute;
   right: 10px;
