@@ -1,3 +1,11 @@
+.main {
+  height: 83vh;
+}
+
+.endlist {
+  width: 100%;  
+}
+
 @media (max-width: 800px) {
   .my-masonry-grid {
     margin-left: -15px;

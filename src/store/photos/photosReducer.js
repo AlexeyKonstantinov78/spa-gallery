@@ -1,6 +1,7 @@
 import {
   PHOTOS_REQUEST,
   PHOTOS_REQUEST_SUCCESS,
+  PHOTOS_REQUEST_SUCCESS_AFTER,
   PHOTOS_REQUEST_ERROR,
 } from './action';
 
@@ -8,6 +9,7 @@ const initialState = {
   loading: false,
   photos: {},
   error: '',
+  count: 1,
 };
 
 export const photosReducer = (state = initialState, action) => {
@@ -23,6 +25,15 @@ export const photosReducer = (state = initialState, action) => {
         loading: false,
         photos: action.data,
         error: '',
+        count: state.count + 1,
+      };
+    case PHOTOS_REQUEST_SUCCESS_AFTER:
+      return {
+        ...state,
+        loading: false,
+        photos: [...state.photos, ...action.data],
+        error: '',
+        count: state.count + 1,
       };
     case PHOTOS_REQUEST_ERROR:
       return {
@@ -30,6 +41,7 @@ export const photosReducer = (state = initialState, action) => {
         loading: false,
         photos: {},
         error: action.error,
+        count: 0,
       };
     default:
       return state;

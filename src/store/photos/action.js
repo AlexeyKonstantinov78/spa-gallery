@@ -3,6 +3,7 @@ import { API_URL, ACCESS_KEY } from '../../components/util/const';
 
 export const PHOTOS_REQUEST = 'PHOTOS_REQUEST';
 export const PHOTOS_REQUEST_SUCCESS = 'PHOTOS_REQUEST_SUCCESS';
+export const PHOTOS_REQUEST_SUCCESS_AFTER = 'PHOTOS_REQUEST_SUCCESS_AFTER';
 export const PHOTOS_REQUEST_ERROR = 'PHOTOS_REQUEST_ERROR';
 
 export const photosRequest = () => ({
@@ -14,18 +15,27 @@ export const photosRequestSuccess = (data) => ({
   data,
 });
 
+export const photosRequestSuccessAfter = (data) => ({
+  type: PHOTOS_REQUEST_SUCCESS_AFTER,
+  data,
+});
+
 export const photosRequestError = (error) => ({
   type: PHOTOS_REQUEST_ERROR,
   error,
 });
 
-export const photosAsync = (page = 1) => (dispatch, getState) => {
-  dispatch(photosRequest());
+export const photosAsync = () => (dispatch, getState) => {
   const token = getState().token.token;
+  const loading = getState().photos.loading;
+  const count = getState().photos.count;
+
+  if (loading) return;
+  dispatch(photosRequest());
 
   axios
     .get(
-      `${API_URL}/photos?client_id=${ACCESS_KEY}&per_page=30&order_by=popular&page=${page}`,
+      `${API_URL}/photos?client_id=${ACCESS_KEY}&per_page=30&order_by=popular&page=${count}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -33,7 +43,11 @@ export const photosAsync = (page = 1) => (dispatch, getState) => {
       }
     )
     .then(({ data }) => {
-      dispatch(photosRequestSuccess(data));
+      if (count >= 2) {
+        dispatch(photosRequestSuccessAfter(data));
+      } else {
+        dispatch(photosRequestSuccess(data));
+      }
     })
     .catch((error) => {
       dispatch(photosRequestError(error.toString()));
