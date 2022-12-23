@@ -41,7 +41,7 @@ export const Auth = () => {
             {loading &&
               <PuffLoader color="#36d7b7" />
             }
-            <img src={linkImage} alt={name} />
+            <img className={style.profile__img} src={linkImage} alt={name} />
             <p>{name}</p>
           </div>
           <a href='#' onClick={hendlerDeleteToken}>

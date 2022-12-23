@@ -11,3 +11,7 @@
   gap:5px;
   margin-bottom: 5px;
 }
+
+.profile__img{
+  border-radius: 50%;
+}
