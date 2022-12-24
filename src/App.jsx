@@ -5,7 +5,7 @@ import { Container } from './components/container/Container';
 import { Header } from './components/header/Header';
 import { updateToken } from './store/tokenReducer';
 import { getToken } from './API/token';
-import { Main } from './components/main/Main';
+import { Main } from './components/main/main';
 import { Route, Routes } from 'react-router-dom';
 import { Photo } from './components/photo/Photo';
 import { UserLike } from './components/userlike/UserLike';
