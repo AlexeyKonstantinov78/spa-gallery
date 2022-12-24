@@ -9,7 +9,7 @@ import {
 } from '../../../store/authProfile/action';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { photosAsync } from '../../../store/photos/action';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { photoAsync } from '../../../store/photo/actionPhoto';
 import { photosLikeRequestLogout } from '../../../store/photosLIke/photosLikeAction';
 
@@ -32,7 +32,6 @@ export const Auth = () => {
   }, [token]);
 
   const hendlerDeleteToken = (event) => {
-    event.preventDefault();
     dispatch(deleteToken(''));
     dispatch(authLogout());
     if (path.id) {
@@ -66,7 +65,7 @@ export const Auth = () => {
             <img className={style.profile__img} src={linkImage} alt={name} />
             <p>{name}</p>
           </div>
-          <a href='#' onClick={() => {
+          <a onClick={() => {
             hendlerDeleteToken();
             navigate('/');
           }}>

@@ -9,6 +9,7 @@ import { Main } from './components/main/Main';
 import { Route, Routes } from 'react-router-dom';
 import { Photo } from './components/photo/Photo';
 import { UserLike } from './components/userlike/UserLike';
+import { Search } from './components/search/Search';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
           element={
             <>
               <Header />
+              <Search />
             </>
           }
         />
