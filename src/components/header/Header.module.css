@@ -17,3 +17,7 @@
 .header__btnLike {
   fill: tomato;
 }
+
+.header__search {
+  cursor: pointer;
+}

@@ -44,6 +44,14 @@ function App() {
             </>
           }
         />
+        <Route
+          path='/search'
+          element={
+            <>
+              <Header />
+            </>
+          }
+        />
       </Routes>
     </Container>
   );
