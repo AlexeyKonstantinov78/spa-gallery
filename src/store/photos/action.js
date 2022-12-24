@@ -25,10 +25,13 @@ export const photosRequestError = (error) => ({
   error,
 });
 
-export const photosAsync = () => (dispatch, getState) => {
+export const photosAsync = (count) => (dispatch, getState) => {
   const token = getState().token.token;
   const loading = getState().photos.loading;
-  const count = getState().photos.count;
+
+  if (!count) {
+    count = getState().photos.count;
+  }
 
   if (loading) return;
   dispatch(photosRequest());

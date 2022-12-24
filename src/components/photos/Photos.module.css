@@ -49,6 +49,7 @@
 }
 
 .photos__like_svg {
+  cursor:pointer;
   fill: aliceblue;
   transform: translateY(10px);  
 }

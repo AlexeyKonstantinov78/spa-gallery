@@ -31,7 +31,7 @@ export const Main = () => {
         dispatch(photosAsync());
       }
     }, {
-      rootMargin: '700px',
+      rootMargin: '400px',
     });
 
     observer.observe(endList.current);

@@ -5,9 +5,28 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { formDate } from '../util/formDate';
 import { ReactComponent as ButtonLIkeIcon } from './img/like.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteLikeAsync, updateLikeAsync } from '../../store/likeReducer';
+import { photosAsync } from '../../store/photos/action';
+
 
 export const Photos = ({ photo }) => {
-  console.log();
+  const token = useSelector((state) => state.token.token);
+  const dispatch = useDispatch();
+
+  const clickedLike = (id) => {
+    console.log('id: ' + id);
+    if (photo.liked_by_user && token) {
+      dispatch(deleteLikeAsync({ id }));
+    }
+
+    if (!photo.liked_by_user && token) {
+      dispatch(updateLikeAsync({ id }));
+    }
+
+    dispatch(photosAsync(1));
+  };
+
   return (
     <div className={_.photos_div} key={photo.blur_hash}>
       <Link to={`/photos/${photo.id}`}>
@@ -36,7 +55,13 @@ export const Photos = ({ photo }) => {
       </div>
       <div className={_.photos__like}>
         <strong title={photo.likes} >{photo.likes}</strong>
-        <ButtonLIkeIcon className={_.photos__like_svg} aria-checked={photo.liked_by_user} />
+        <ButtonLIkeIcon
+          className={_.photos__like_svg}
+          aria-checked={photo.liked_by_user}
+          onClick={() => {
+            clickedLike(photo.id);
+          }}
+        />
       </div>
     </div>
   );
