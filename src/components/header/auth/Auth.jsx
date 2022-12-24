@@ -34,6 +34,7 @@ export const Auth = () => {
   const hendlerDeleteToken = (event) => {
     dispatch(deleteToken(''));
     dispatch(authLogout());
+    navigate('/');
     if (path.id) {
       dispatch(photoAsync(path));
       return;
@@ -65,12 +66,11 @@ export const Auth = () => {
             <img className={style.profile__img} src={linkImage} alt={name} />
             <p>{name}</p>
           </div>
-          <a onClick={() => {
+          <Link to={'/'} onClick={() => {
             hendlerDeleteToken();
-            navigate('/');
           }}>
             Выход
-          </a>
+          </Link>
         </dir>
       )}
     </div>
