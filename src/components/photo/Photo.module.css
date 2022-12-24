@@ -32,7 +32,7 @@
 
 .photo__like_svg {
   fill: rgb(162, 169, 175);
-  transform: translateY(10px);
+  
 }
 
 .photo__like_svg[aria-checked="true"] {
@@ -42,4 +42,5 @@
 .photo__btn {
   background-color: transparent;
   border-color: transparent;
+  transform: translateY(10px);
 }

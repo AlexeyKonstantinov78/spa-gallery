@@ -39,7 +39,6 @@ export const photosReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        photos: {},
         error: action.error,
         count: 0,
       };
