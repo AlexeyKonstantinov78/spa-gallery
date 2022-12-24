@@ -52,7 +52,7 @@ export const Auth = () => {
     <div className={style.auth}>
       {!token && (
         <dir className={style.login}>
-          <a className={style.login} href={url}>
+          <a href={url}>
             Вход
           </a>
         </dir>

@@ -2,7 +2,7 @@ import { Auth } from './auth/Auth';
 import style from './Header.module.css';
 import { ReactComponent as BtnLike } from '../image/like.svg';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const token = useSelector((state) => state.token.token);
@@ -13,7 +13,7 @@ export const Header = () => {
 
   return (
     <header className={style.header}>
-      <a className={style.logo} href='http://192.168.1.136:3000'>
+      <Link to={'/'} className={style.logo} >
         <svg
           width='32'
           height='32'
@@ -25,7 +25,7 @@ export const Header = () => {
           <title id='unsplash-home'>Unsplash Home</title>
           <path d='M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z'></path>
         </svg>
-      </a>
+      </Link>
       <dir className={style.header__search} onClick={() => {
         navigator('/search');
       }}>
