@@ -21,6 +21,9 @@ export const photoRequestError = (error) => ({
 
 export const photoAsync = ({ id }) => (dispatch, getState) => {
   const token = getState().token.token;
+  const loading = getState().photo.loading;
+
+  if (loading) return;
 
   dispatch(photoRequest());
 

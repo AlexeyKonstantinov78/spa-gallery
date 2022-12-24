@@ -15,18 +15,23 @@ function App() {
   dispatch(updateToken(getToken()));
   return (
     <Container>
-      <Header />
       <Routes>
         <Route
           path='/'
           element={
-            <Main />
+            <>
+              <Header />
+              <Main />
+            </>
           }
         />
         <Route
           path='/photos/:id'
           element={
-            <Photo />
+            <>
+              <Header />
+              <Photo />
+            </>
           }
         />
       </Routes>

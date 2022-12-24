@@ -9,6 +9,8 @@ import {
 } from '../../../store/authProfile/action';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { photosAsync } from '../../../store/photos/action';
+import { useParams } from 'react-router-dom';
+import { photoAsync } from '../../../store/photo/actionPhoto';
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -16,9 +18,14 @@ export const Auth = () => {
   const name = useSelector((state) => state.authProfile.data.name);
   const linkImage = useSelector((state) => state.authProfile.data.image);
   const loading = useSelector((state) => state.authProfile.loading);
+  const path = useParams();
 
   useEffect(() => {
     dispatch(authProfileAsync());
+    if (path.id) {
+      dispatch(photoAsync(path));
+      return;
+    }
     dispatch(photosAsync());
   }, [token]);
 
@@ -26,8 +33,14 @@ export const Auth = () => {
     event.preventDefault();
     dispatch(deleteToken(''));
     dispatch(authLogout());
+    if (path.id) {
+      dispatch(photoAsync(path));
+      return;
+    }
     dispatch(photosAsync());
   };
+
+  console.log(path.id);
 
   return (
     <div className={style.auth}>

@@ -19,7 +19,6 @@ export const Photo = () => {
   }, []);
 
   const clickedLike = () => {
-    console.log(token);
     if (photo.liked_by_user && token) {
       dispatch(deleteLikeAsync(param));
     }
