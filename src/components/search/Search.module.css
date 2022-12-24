@@ -1,0 +1,17 @@
+.search__main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search__label {
+  font-size: 16px;
+  font-weight: 500;  
+  
+}
+
+.search__input {
+  padding: 5px;
+  border-radius: 10px;
+  width: 100%;  
+}

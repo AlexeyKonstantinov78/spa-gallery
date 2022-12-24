@@ -34,14 +34,16 @@ export const Search = () => {
   console.log();
   return (
     <main className={_.search__main}>
-      <label className={_.search__label} htmlFor="search">Введите название фото</label>
+      <label className={_.search__label} htmlFor="search">Поиск по #тегам </label>
       <input
         className={_.search__input}
         type="text"
         id="search"
         name="search"
         defaultValue={search}
-        onChange={handleSearch} />
+        onChange={handleSearch}
+        placeholder='введите больше 3 символов'
+        />
 
       <Masonry
         breakpointCols={breakpointColumnsObj}
