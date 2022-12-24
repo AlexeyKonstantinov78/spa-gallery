@@ -40,10 +40,11 @@ export const authProfileAsync = () => (dispatch, getState) => {
         name,
         profile_image: {
           small: image,
-        }
+        },
+        username
       }
     }) => {
-      const data = { name, image };
+      const data = { name, image, username };
       dispatch(authProfileRequestSuccess(data));
     })
     .catch((err) => {

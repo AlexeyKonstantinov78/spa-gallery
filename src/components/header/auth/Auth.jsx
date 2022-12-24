@@ -9,8 +9,9 @@ import {
 } from '../../../store/authProfile/action';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { photosAsync } from '../../../store/photos/action';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { photoAsync } from '../../../store/photo/actionPhoto';
+import { photosLikeRequestLogout } from '../../../store/photosLIke/photosLikeAction';
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export const Auth = () => {
   const linkImage = useSelector((state) => state.authProfile.data.image);
   const loading = useSelector((state) => state.authProfile.loading);
   const path = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(authProfileAsync());
@@ -37,10 +39,14 @@ export const Auth = () => {
       dispatch(photoAsync(path));
       return;
     }
+    if (path.username) {
+      dispatch(photosLikeRequestLogout());
+      return;
+    }
     dispatch(photosAsync());
   };
 
-  console.log(path.id);
+  console.log(path);
 
   return (
     <div className={style.auth}>
@@ -60,7 +66,10 @@ export const Auth = () => {
             <img className={style.profile__img} src={linkImage} alt={name} />
             <p>{name}</p>
           </div>
-          <a href='#' onClick={hendlerDeleteToken}>
+          <a href='#' onClick={() => {
+            hendlerDeleteToken();
+            navigate('/');
+          }}>
             Выход
           </a>
         </dir>

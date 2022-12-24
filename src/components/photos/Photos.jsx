@@ -4,7 +4,7 @@ import _ from './Photos.module.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { formDate } from '../util/formDate';
-import { ReactComponent as ButtonLIkeIcon } from './img/like.svg';
+import { ReactComponent as ButtonLIkeIcon } from '../image/like.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteLikeAsync, updateLikeAsync } from '../../store/likeReducer';
 import { photosAsync } from '../../store/photos/action';

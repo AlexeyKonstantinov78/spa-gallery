@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable key-spacing */
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { photosAsync } from '../../store/photos/action';
 import './masonry.css';

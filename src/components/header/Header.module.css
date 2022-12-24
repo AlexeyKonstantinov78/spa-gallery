@@ -4,3 +4,16 @@
   justify-content: space-between;
   padding: 15px 0;
 }
+
+.header__btnLike {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.header__btnLike {
+  fill: tomato;
+}

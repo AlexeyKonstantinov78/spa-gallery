@@ -6,7 +6,7 @@ import { photoAsync } from '../../store/photo/actionPhoto';
 import _ from './Photo.module.css';
 import { formDate } from '../util/formDate';
 import { deleteLikeAsync, updateLikeAsync } from '../../store/likeReducer';
-import { ReactComponent as ButtonLIkeIcon } from './img/like.svg';
+import { ReactComponent as ButtonLIkeIcon } from '../image/like.svg';
 
 export const Photo = () => {
   const param = useParams();

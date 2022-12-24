@@ -1,0 +1,16 @@
+@media (max-width: 800px) {
+  .my-masonry-grid {
+    margin-left: -15px;
+    /* gutter size offset */
+  }
+
+  .my-masonry-grid_column {
+    padding-left: 15px;
+    /* gutter size offset */
+  }
+
+  .my-masonry-grid_column>div {
+    margin-bottom: 15px;
+    /* space between items */
+  }
+}
