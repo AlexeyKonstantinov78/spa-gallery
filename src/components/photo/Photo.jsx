@@ -32,8 +32,6 @@ export const Photo = () => {
     }, 500);
   };
 
-  console.log(photo);
-
   return (
     <main className={_.main}>
       {photo.id &&

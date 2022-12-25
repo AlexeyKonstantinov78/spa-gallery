@@ -28,7 +28,7 @@ export const Auth = () => {
       dispatch(photoAsync(path));
       return;
     }
-    dispatch(photosAsync());
+    dispatch(photosAsync(1));
   }, [token]);
 
   const hendlerDeleteToken = (event) => {
@@ -43,10 +43,8 @@ export const Auth = () => {
       dispatch(photosLikeRequestLogout());
       return;
     }
-    dispatch(photosAsync());
+    dispatch(photosAsync(1));
   };
-
-  console.log(path);
 
   return (
     <div className={style.auth}>

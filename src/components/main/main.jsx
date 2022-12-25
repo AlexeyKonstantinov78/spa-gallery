@@ -43,8 +43,6 @@ export const Main = () => {
     };
   }, [endList.current]);
 
-  console.log(photos);
-
   return (
     <main className={style.main}>
       <Masonry
@@ -52,7 +50,7 @@ export const Main = () => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column">
         {photos.length &&
-          photos.map((photo) => <Photos key={photo.id} photo={photo} />)
+          photos.map((photo) => <Photos key={photo.id} photo={photo} list='home' />)
         }
       </Masonry>
       <div ref={endList} className={style.endlist}></div>

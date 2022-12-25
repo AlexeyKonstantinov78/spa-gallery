@@ -2,15 +2,12 @@ import { Auth } from './auth/Auth';
 import style from './Header.module.css';
 import { ReactComponent as BtnLike } from '../image/like.svg';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const token = useSelector((state) => state.token.token);
   const username = useSelector((state) => state.authProfile.data.username);
   const navigator = useNavigate();
-  const params = useParams();
-
-  console.log(params);
 
   return (
     <header className={style.header}>

@@ -25,13 +25,11 @@ export const Search = () => {
   };
 
   useEffect(() => {
-    console.log(search);
     if (search.length > 3) {
       dispatch(searchPhotosAsync(search));
     }
   }, [search]);
 
-  console.log();
   return (
     <main className={_.search__main}>
       <label className={_.search__label} htmlFor="search">Поиск по #тегам </label>
@@ -50,7 +48,7 @@ export const Search = () => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column">
         {searchPhotos &&
-          searchPhotos.map((photo) => <Photos key={photo.id} photo={photo} />)
+          searchPhotos.map((photo) => <Photos key={photo.id} photo={photo} list='search' />)
         }
       </Masonry>
 

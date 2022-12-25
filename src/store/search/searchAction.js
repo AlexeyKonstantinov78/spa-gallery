@@ -9,9 +9,10 @@ export const serachRequest = () => ({
   type: SEARCH_REQUEST,
 });
 
-export const serachRequestSuccess = (data) => ({
+export const serachRequestSuccess = (data, search) => ({
   type: SEARCH_REQUEST_SUCCESS,
   data,
+  search,
 });
 
 export const serachRequestError = (error) => ({
@@ -36,7 +37,7 @@ export const searchPhotosAsync = (search) => (dispatch, getState) => {
     }
   )
     .then(({ data }) => {
-      dispatch(serachRequestSuccess(data));
+      dispatch(serachRequestSuccess(data, search));
     })
     .catch((error) => {
       dispatch(serachRequestError(error.toString()));

@@ -25,7 +25,6 @@ export const updateLikeAsync = ({ id }) => (dispatch, getState) => {
 
   axios(option).then((response) => {
     dispatch(updateLike());
-    console.log(response);
   }).catch((error) => {
     console.log(error.toString());
   });
@@ -40,7 +39,6 @@ export const deleteLikeAsync = ({ id }) => (dispatch, getState) => {
     },
   }).then((response) => {
     dispatch(deleteLike());
-    console.log(response);
   }).catch((error) => {
     console.log(error.toString());
   });

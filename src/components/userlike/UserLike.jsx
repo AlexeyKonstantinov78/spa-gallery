@@ -32,7 +32,7 @@ export const UserLike = () => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column">
         {photosLike.length &&
-          photosLike.map((photo) => <Photos key={photo.id} photo={photo} />)
+          photosLike.map((photo) => <Photos key={photo.id} photo={photo} list='userlike' />)
         }
       </Masonry>
     </main>

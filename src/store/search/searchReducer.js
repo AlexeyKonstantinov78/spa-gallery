@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   loading: false,
+  search: '',
   searchPhotos: {},
   error: '',
 };
@@ -20,6 +21,7 @@ export const searchPhotosReducer = (state = initialState, action) => {
     case SEARCH_REQUEST_SUCCESS:
       return {
         loading: false,
+        search: action.search,
         searchPhotos: action.data,
         error: '',
       };
@@ -27,6 +29,7 @@ export const searchPhotosReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        searchPhotos: {},
         error: action.error,
       };
     default:
