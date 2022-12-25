@@ -18,7 +18,7 @@ export const Photo = () => {
     dispatch(photoAsync(param));
   }, []);
 
-  const clickedLike = () => {
+  const clickedLike = (event) => {
     if (photo.liked_by_user && token) {
       dispatch(deleteLikeAsync(param));
     }
@@ -27,10 +27,13 @@ export const Photo = () => {
       dispatch(updateLikeAsync(param));
     }
 
-    dispatch(photoAsync(param));
+    setTimeout(() => {
+      dispatch(photoAsync(param));
+    }, 500);
   };
 
   console.log(photo);
+
   return (
     <main className={_.main}>
       {photo.id &&

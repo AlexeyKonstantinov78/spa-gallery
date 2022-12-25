@@ -27,6 +27,7 @@ export const photoReducer = (state = initialState, action) => {
     case PHOTO_REQUEST_ERROR:
       return {
         ...state,
+        loading: false,
         error: action.error,
       };
     default:
