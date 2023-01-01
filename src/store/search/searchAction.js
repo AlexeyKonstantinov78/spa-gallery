@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { API_URL, ACCESS_KEY } from '../../components/util/const';
+import { requestAxios } from '../../API/requestAxios';
 
 export const SEARCH_REQUEST = 'SEARCH_REQUEST';
 export const SEARCH_REQUEST_SUCCESS = 'SEARCH_REQUEST_SUCCESS';
@@ -23,24 +23,16 @@ export const serachRequestError = (error) => ({
 export const searchPhotosAsync = (search) => (dispatch, getState) => {
   const token = getState().token.token;
   const loading = getState().searchPhotos.loading;
+  const url =
+    `${API_URL}/search/photos?query=${search}&client_id=${ACCESS_KEY}&lang=ru&per_page=30`;
 
   if (loading) return;
 
   dispatch(serachRequest());
 
-  axios.get(
-    `${API_URL}/search/photos?query=${search}&client_id=${ACCESS_KEY}&lang=ru&per_page=30`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    }
-  )
-    .then(({ data }) => {
-      dispatch(serachRequestSuccess(data, search));
-    })
-    .catch((error) => {
-      dispatch(serachRequestError(error.toString()));
-    });
+  requestAxios(url, token, (data) => {
+    dispatch(serachRequestSuccess(data, search));
+  }, (error) => {
+    dispatch(serachRequestError(error.toString()));
+  });
 };
-

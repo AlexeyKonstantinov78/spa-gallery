@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { API_URL, ACCESS_KEY } from '../../components/util/const';
+import { requestAxios } from '../../API/requestAxios';
 
 export const PHOTOSLIKES_REQUEST = 'PHOTOSLIKES_REQUEST';
 export const PHOTOSLIKES_REQUEST_SUCCESS = 'PHOTOSLIKES_REQUEST_SUCCESS';
@@ -27,20 +27,15 @@ export const photosLikeRequestLogout = () => ({
 export const photosLikeAsync = ({ username }) => (dispatch, getState) => {
   const token = getState().token.token;
   const loading = getState().photosLike.loading;
+  const url =
+    `${API_URL}/users/${username}/likes?client_id=${ACCESS_KEY}`;
 
   if (loading || !token) return;
   dispatch(photosLikeRequest());
-  axios.get(
-    `${API_URL}/users/${username}/likes?client_id=${ACCESS_KEY}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    }
-  ).then(({ data }) => {
+
+  requestAxios(url, token, (data) => {
     dispatch(photosLikeRequestSuccess(data));
-  })
-    .catch((error) => {
-      dispatch(photosLikeRequestError(error.toString()));
-    });
+  }, (error) => {
+    dispatch(photosLikeRequestError(error.toString()));
+  });
 };
