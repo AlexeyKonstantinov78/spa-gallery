@@ -24,3 +24,5 @@ yarn-error.log*
 
 
 req.http
+
+src/components/util/const.js
